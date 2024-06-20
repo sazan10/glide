@@ -28,9 +28,9 @@ jobs:
     - name: Install casr
       run: |
         cargo install casr
-    - name: Compile using mvn
+    - name: Compile using gradle
       run: |
-        mvn clean install -DskipTests
+        ./gradlew clean build -x test 
     - name: Run CASR
       run: |
         find . -name '*.jar' -exec sh -c 'echo "Processing {}" && timeout 200s casr-java -o {}.casrep -- java -jar {}' \;
